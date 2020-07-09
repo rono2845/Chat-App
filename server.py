@@ -7,9 +7,9 @@ def send(listbox, entry):
     listbox.insert('end', "Server: "+message)
     entry.delete(0,END)
     client.send(bytes(message, "utf-8"))
-    recieve(listbox)
+    receive(listbox)
 
-def recieve(listbox):
+def receive(listbox):
     message_from_client = client.recv(50)
     listbox.insert('end', "Client: "+message_from_client.decode('utf-8'))
 
@@ -25,8 +25,8 @@ listbox.pack()
 sendButton = Button(root, text="Send", command = lambda : send(listbox, entry))
 sendButton.pack(side=BOTTOM)
 
-recieveButton = Button(root, text="Recieve", command = lambda : recieve(listbox))
-recieveButton.pack(side=BOTTOM)
+receiveButton = Button(root, text="receive", command = lambda : receive(listbox))
+receiveButton.pack(side=BOTTOM)
 
 ## ACTUAL SOCKET CODES TO MAKE THE APPLICATION RUN
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
